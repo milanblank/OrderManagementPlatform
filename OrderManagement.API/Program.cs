@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using OrderManagement.Infrastructure.Data;
 using OrderManagement.Application.Interfaces;
 using OrderManagement.Infrastructure.Repositories;
+using OrderManagement.Application.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -18,6 +19,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+
+// Register Services
+builder.Services.AddScoped<ICartService, CartService>();
 
 // Add JWT authentication
 builder.Services.AddAuthentication(options =>

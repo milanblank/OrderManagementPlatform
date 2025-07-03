@@ -87,6 +87,27 @@ public class ProductRepository : IProductRepository
         return product != null && product.StockQuantity >= quantity;
     }
 
+    public async Task<bool> ReduceStockAsync(int productId, int quantity)
+    {
+        var product = await _context.Products.FindAsync(productId);
+        if (product == null || product.StockQuantity < quantity)
+            return false;
+
+        product.StockQuantity -= quantity;
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> RestoreStockAsync(int productId, int quantity)
+    {
+        var product = await _context.Products.FindAsync(productId);
+        if (product == null) return false;
+
+        product.StockQuantity += quantity;
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
     private static ProductDto MapToDto(Product product)
     {
         return new ProductDto

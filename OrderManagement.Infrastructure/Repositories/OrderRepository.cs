@@ -57,41 +57,60 @@ public class OrderRepository : IOrderRepository
 
     public async Task<OrderDto> CreateAsync(CreateOrderDto dto)
     {
-        var order = new Order
+        using var transaction = await _context.Database.BeginTransactionAsync();
+        
+        try
         {
-            UserId = dto.UserId,
-            TotalPrice = 0, // Will be calculated
-            Status = OrderStatus.Pending,
-            Date = DateTime.UtcNow
-        };
-
-        _context.Orders.Add(order);
-        await _context.SaveChangesAsync();
-
-        decimal total = 0;
-        var orderItems = new List<OrderItem>();
-
-        foreach (var item in dto.Items)
-        {
-            var product = await _context.Products.FindAsync(item.ProductId);
-            if (product == null) continue;
-
-            var orderItem = new OrderItem
+            var order = new Order
             {
-                OrderId = order.Id,
-                ProductId = product.Id,
-                Quantity = item.Quantity,
-                UnitPrice = product.Price
+                UserId = dto.UserId,
+                TotalPrice = 0, // Will be calculated
+                Status = OrderStatus.Pending,
+                Date = DateTime.UtcNow
             };
-            total += product.Price * item.Quantity;
-            orderItems.Add(orderItem);
+
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+
+            decimal total = 0;
+            var orderItems = new List<OrderItem>();
+
+            foreach (var item in dto.Items)
+            {
+                var product = await _context.Products.FindAsync(item.ProductId);
+                if (product == null) continue;
+
+                // Validate and reduce stock
+                if (product.StockQuantity < item.Quantity)
+                {
+                    throw new InvalidOperationException($"Insufficient stock for product '{product.Name}'. Available: {product.StockQuantity}, Requested: {item.Quantity}");
+                }
+
+                product.StockQuantity -= item.Quantity;
+
+                var orderItem = new OrderItem
+                {
+                    OrderId = order.Id,
+                    ProductId = product.Id,
+                    Quantity = item.Quantity,
+                    UnitPrice = product.Price
+                };
+                total += product.Price * item.Quantity;
+                orderItems.Add(orderItem);
+            }
+
+            _context.OrderItems.AddRange(orderItems);
+            order.TotalPrice = total;
+            await _context.SaveChangesAsync();
+
+            await transaction.CommitAsync();
+            return MapToDto(order, orderItems);
         }
-
-        _context.OrderItems.AddRange(orderItems);
-        order.TotalPrice = total;
-        await _context.SaveChangesAsync();
-
-        return MapToDto(order, orderItems);
+        catch
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
     }
 
     public async Task<OrderDto?> UpdateStatusAsync(int id, string status)

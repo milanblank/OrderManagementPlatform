@@ -12,4 +12,6 @@ public interface IProductRepository
     Task<bool> DeleteAsync(int id);
     Task<bool> ExistsAsync(int id);
     Task<bool> IsInStockAsync(int productId, int quantity);
+    Task<bool> ReduceStockAsync(int productId, int quantity);
+    Task<bool> RestoreStockAsync(int productId, int quantity);
 }
