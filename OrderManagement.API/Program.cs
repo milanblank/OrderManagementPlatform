@@ -23,6 +23,7 @@ builder.Services.AddScoped<ICartRepository, CartRepository>();
 
 // Register Services
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IStockService, StockService>();
 
 // Add JWT authentication
 builder.Services.AddAuthentication(options =>
@@ -42,6 +43,12 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
+});
+
+// Admin only policy (for stock management)
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 });
 
 // Add controllers
