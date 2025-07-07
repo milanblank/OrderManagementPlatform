@@ -513,3 +513,4 @@ C:\Projects\OrderManagementPlatform\OrderManagement.API\obj\Debug\net9.0\refint\
 C:\Projects\OrderManagementPlatform\OrderManagement.API\obj\Debug\net9.0\OrderManagement.API.pdb
 C:\Projects\OrderManagementPlatform\OrderManagement.API\obj\Debug\net9.0\OrderManagement.API.genruntimeconfig.cache
 C:\Projects\OrderManagementPlatform\OrderManagement.API\obj\Debug\net9.0\ref\OrderManagement.API.dll
+C:\Projects\OrderManagementPlatform\OrderManagement.API\bin\Debug\net9.0\BCrypt.Net-Next.dll

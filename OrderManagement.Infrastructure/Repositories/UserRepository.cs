@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrderManagement.Application.DTOs;
 using OrderManagement.Application.Interfaces;
+using OrderManagement.Application.Factories;
 using OrderManagement.Domain.Entities;
 using OrderManagement.Domain.Enums;
 using OrderManagement.Infrastructure.Data;
@@ -10,10 +11,12 @@ namespace OrderManagement.Infrastructure.Repositories;
 public class UserRepository : IUserRepository
 {
     private readonly AppDbContext _context;
+    private readonly IEntityFactory _entityFactory;
 
-    public UserRepository(AppDbContext context)
+    public UserRepository(AppDbContext context, IEntityFactory entityFactory)
     {
         _context = context;
+        _entityFactory = entityFactory;
     }
 
     public async Task<UserDto?> GetByIdAsync(int id)
@@ -36,15 +39,8 @@ public class UserRepository : IUserRepository
 
     public async Task<UserDto> CreateAsync(CreateUserDto dto)
     {
-        var user = new User
-        {
-            FirstName = dto.FirstName,
-            LastName = dto.LastName,
-            Email = dto.Email,
-            PasswordHash = dto.Password, // TODO: Implement proper password hashing
-            Role = Enum.Parse<Role>(dto.Role)
-        };
-
+        var user = _entityFactory.CreateUser(dto);
+        
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
         return MapToDto(user);
@@ -90,12 +86,13 @@ public class UserRepository : IUserRepository
             Role = user.Role.ToString()
         };
     }
+    
     public async Task<bool> VerifyPasswordAsync(int userId, string password)
     {
         var user = await _context.Users.FindAsync(userId);
         if (user == null) return false;
 
-        // TODO: replace with proper logic for password verification, e.g., using hashing algorithm
-        return user.PasswordHash == password;
+        // Use the factory to verify the password against the stored hash
+        return _entityFactory.VerifyPassword(password, user.PasswordHash);
     }
 }

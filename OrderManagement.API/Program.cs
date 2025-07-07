@@ -1,10 +1,11 @@
-using Microsoft.EntityFrameworkCore;
-using OrderManagement.Infrastructure.Data;
-using OrderManagement.Application.Interfaces;
-using OrderManagement.Infrastructure.Repositories;
-using OrderManagement.Application.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OrderManagement.Application.Factories;
+using OrderManagement.Application.Interfaces;
+using OrderManagement.Application.Services;
+using OrderManagement.Infrastructure.Data;
+using OrderManagement.Infrastructure.Repositories;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,9 @@ builder.Services.AddScoped<ICartRepository, CartRepository>();
 // Register Services
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IStockService, StockService>();
+
+// Register Factories
+builder.Services.AddScoped<IEntityFactory, EntityFactory>();
 
 // Add JWT authentication
 builder.Services.AddAuthentication(options =>

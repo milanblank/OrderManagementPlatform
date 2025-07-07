@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrderManagement.Application.DTOs;
 using OrderManagement.Application.Interfaces;
+using OrderManagement.Application.Factories;
 using OrderManagement.Domain.Entities;
 using OrderManagement.Infrastructure.Data;
 
@@ -9,10 +10,12 @@ namespace OrderManagement.Infrastructure.Repositories;
 public class ProductRepository : IProductRepository
 {
     private readonly AppDbContext _context;
+    private readonly IEntityFactory _entityFactory;
 
-    public ProductRepository(AppDbContext context)
+    public ProductRepository(AppDbContext context, IEntityFactory entityFactory)
     {
         _context = context;
+        _entityFactory = entityFactory;
     }
 
     public async Task<ProductDto?> GetByIdAsync(int id)
@@ -37,15 +40,8 @@ public class ProductRepository : IProductRepository
 
     public async Task<ProductDto> CreateAsync(CreateProductDto dto)
     {
-        var product = new Product
-        {
-            Name = dto.Name,
-            Description = dto.Description,
-            Price = dto.Price,
-            StockQuantity = dto.StockQuantity,
-            Category = dto.Category
-        };
-
+        var product = _entityFactory.CreateProduct(dto);
+        
         _context.Products.Add(product);
         await _context.SaveChangesAsync();
         return MapToDto(product);
