@@ -24,3 +24,16 @@ C:/Projects/OrderManagementPlatform/OrderManagement.Domain/obj/Debug/net9.0/Orde
 /Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.Domain/obj/Debug/net9.0/refint/OrderManagement.Domain.dll
 /Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.Domain/obj/Debug/net9.0/OrderManagement.Domain.pdb
 /Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.Domain/obj/Debug/net9.0/ref/OrderManagement.Domain.dll
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\bin\Debug\net9.0\OrderManagement.Domain.deps.json
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\bin\Debug\net9.0\OrderManagement.Domain.dll
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\bin\Debug\net9.0\OrderManagement.Domain.pdb
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.csproj.AssemblyReference.cache
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.AssemblyInfoInputs.cache
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.AssemblyInfo.cs
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.sourcelink.json
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.dll
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\refint\OrderManagement.Domain.dll
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.pdb
+C:\Projects\OrderManagementPlatform\OrderManagement.Domain\obj\Debug\net9.0\ref\OrderManagement.Domain.dll

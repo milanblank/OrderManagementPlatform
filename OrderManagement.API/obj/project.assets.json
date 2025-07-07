@@ -4557,35 +4557,43 @@
     ]
   },
   "packageFolders": {
-    "/Users/milan/.nuget/packages/": {}
+    "C:\\Users\\mistojil\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.API/OrderManagement.API.csproj",
+      "projectUniqueName": "C:\\Projects\\OrderManagementPlatform\\OrderManagement.API\\OrderManagement.API.csproj",
       "projectName": "OrderManagement.API",
-      "projectPath": "/Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.API/OrderManagement.API.csproj",
-      "packagesPath": "/Users/milan/.nuget/packages/",
-      "outputPath": "/Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.API/obj/",
+      "projectPath": "C:\\Projects\\OrderManagementPlatform\\OrderManagement.API\\OrderManagement.API.csproj",
+      "packagesPath": "C:\\Users\\mistojil\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\OrderManagementPlatform\\OrderManagement.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/milan/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\mistojil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.Application/OrderManagement.Application.csproj": {
-              "projectPath": "/Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.Application/OrderManagement.Application.csproj"
+            "C:\\Projects\\OrderManagementPlatform\\OrderManagement.Application\\OrderManagement.Application.csproj": {
+              "projectPath": "C:\\Projects\\OrderManagementPlatform\\OrderManagement.Application\\OrderManagement.Application.csproj"
             },
-            "/Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.Infrastructure/OrderManagement.Infrastructure.csproj": {
-              "projectPath": "/Users/milan/Documents/GitHub/OrderManagementPlatform/OrderManagement.Infrastructure/OrderManagement.Infrastructure.csproj"
+            "C:\\Projects\\OrderManagementPlatform\\OrderManagement.Infrastructure\\OrderManagement.Infrastructure.csproj": {
+              "projectPath": "C:\\Projects\\OrderManagementPlatform\\OrderManagement.Infrastructure\\OrderManagement.Infrastructure.csproj"
             }
           }
         }
@@ -4598,9 +4606,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -4634,7 +4642,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/milan/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
